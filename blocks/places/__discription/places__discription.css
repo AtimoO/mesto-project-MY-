@@ -1,0 +1,6 @@
+.places__description {
+  margin: 23px 19px 31px 21px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
