@@ -1,6 +1,5 @@
 .places__item {
   border-radius: 10px;
   overflow: hidden;
-  max-height: 361px;
   background-color: white;
 }

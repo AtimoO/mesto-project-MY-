@@ -1,6 +1,8 @@
 .profile__info {
   display: flex;
-  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: baseline;
+  flex-grow: 1;
 }
 
 @media screen and (max-width: 767px) {
