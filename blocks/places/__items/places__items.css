@@ -11,7 +11,7 @@
 
 @media screen and (max-width: 767px) {
   .places__items {
-    grid-template-columns: repeat(2, 282px);
+    grid-template-columns: repeat(2, minmax(min-content, 282px));
     justify-content: center;
     margin: 0 19px;
   }
@@ -19,6 +19,6 @@
 
 @media screen and (max-width: 479px) {
   .places__items {
-    grid-template-columns: repeat(1, 282px);
+    grid-template-columns: minmax(min-content, 282px);
   }
 }

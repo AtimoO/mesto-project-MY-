@@ -10,124 +10,119 @@
   <body class="page">
     <header class="header">
       <div class="header__logo"></div>
-      <div class="header__line"></div>
     </header>
     <main class="content">
       <section class="profile">
-        <form class="form" action="#" method="GET">
-          <img
-            src="images/avatar.jpg"
-            alt="Фото профиля"
-            class="profile__image"
-          >
-          <div class="profile__info">
-            <div class="profile__text">
-              <h1 class="profile__title">Жак-Ив Кусто</h1>
-              <p class="profile__subtitle">Исследователь океана</p>
-            </div>
-            <button class="profile__edit" name="edit" id="edit"></button>
+        <img
+          src="images/avatar.jpg"
+          alt="Фото профиля"
+          class="profile__image"
+        >
+        <div class="profile__info">
+          <div class="profile__text">
+            <h1 class="profile__title">Жак-Ив Кусто</h1>
+            <p class="profile__subtitle">Исследователь океана</p>
           </div>
-          <button class="profile__add" name="add" id="add"></button>
-        </form>
+          <button class="profile__edit" type="button" name="edit" id="edit"></button>
+        </div>
+        <button class="profile__add" type="button" name="add" id="add"></button>
       </section>
       <section class="places">
-        <form class="form" action="#" method="GET">
-          <ul class="places__items">
-            <li class="places__item">
-              <img
-                src="images/karachaevsk.jpg"
-                alt="Карачаево-черкесия"
-                class="places__image"
-              >
-              <div class="places__description">
-                <h2 class="places__title">Карачаево-черкесия</h2>
-                <button
-                  class="places__btn-like places__btn-like_active"
-                ></button>
-              </div>
-            </li>
-            <li class="places__item">
-              <img
-                src="images/elbrus.jpg"
-                alt="Эльбрус"
-                class="places__image"
-              >
-              <div class="places__description">
-                <h2 class="places__title">Гора Эльбрус</h2>
-                <button class="places__btn-like"></button>
-              </div>
-            </li>
-            <li class="places__item">
-              <img src="images/dombai.jpg" alt="Домбай" class="places__image" />
-              <div class="places__description">
-                <h2 class="places__title">Домбай</h2>
-                <button class="places__btn-like"></button>
-              </div>
-            </li>
-            <li class="places__item">
-              <img
-                src="images/elbrus.jpg"
-                alt="Эльбрус"
-                class="places__image"
-              >
-              <div class="places__description">
-                <h2 class="places__title">Гора Эльбрус</h2>
-                <button class="places__btn-like"></button>
-              </div>
-            </li>
-            <li class="places__item">
-              <img src="images/dombai.jpg" alt="Домбай" class="places__image" />
-              <div class="places__description">
-                <h2 class="places__title">Домбай</h2>
-                <button class="places__btn-like"></button>
-              </div>
-            </li>
-            <li class="places__item">
-              <img
-                src="images/karachaevsk.jpg"
-                alt="Карачаево-черкесия"
-                class="places__image"
-              >
-              <div class="places__description">
-                <h2 class="places__title">Карачаево-черкесия</h2>
-                <button class="places__btn-like"></button>
-              </div>
-            </li>
-          </ul>
-        </form>
-      </section>
-      <section class="popup">
-        <div class="popup__container">
-          <form class="popup__form" action="#" method="GET">
-            <button class="popup__btn-close" name="close"></button>
-            <h2 class="popup__title">Редактировать профиль</h2>
-            <input
-              class="popup__form-item"
-              name="username"
-              id="username"
-              type="text"
-              value="Жак-Ив Кусто"
-              placeholder="Введите имя"
-              required
+        <ul class="places__items">
+          <li class="places__item">
+            <img
+              src="images/karachaevsk.jpg"
+              alt="Карачаево-черкесия"
+              class="places__image"
             >
-            <input
-              class="popup__form-item"
-              name="hobby"
-              id="hobby"
-              type="text"
-              value="Исследователь океана"
-              placeholder="Введите ваше хобби"
-              required
+            <div class="places__description">
+              <h2 class="places__title">Карачаево-черкесия</h2>
+              <button
+                class="places__btn-like places__btn-like_active" type="button"
+              ></button>
+            </div>
+          </li>
+          <li class="places__item">
+            <img
+              src="images/elbrus.jpg"
+              alt="Эльбрус"
+              class="places__image"
             >
-            <button class="popup__btn-save" type="submit" name="save">
-              Сохранить
-            </button>
-          </form>
-        </div>
+            <div class="places__description">
+              <h2 class="places__title">Гора Эльбрус</h2>
+              <button class="places__btn-like" type="button"></button>
+            </div>
+          </li>
+          <li class="places__item">
+            <img src="images/dombai.jpg" alt="Домбай" class="places__image" />
+            <div class="places__description">
+              <h2 class="places__title">Домбай</h2>
+              <button class="places__btn-like" type="button"></button>
+            </div>
+          </li>
+          <li class="places__item">
+            <img
+              src="images/elbrus.jpg"
+              alt="Эльбрус"
+              class="places__image"
+            >
+            <div class="places__description">
+              <h2 class="places__title">Гора Эльбрус</h2>
+              <button class="places__btn-like" type="button"></button>
+            </div>
+          </li>
+          <li class="places__item">
+            <img src="images/dombai.jpg" alt="Домбай" class="places__image" />
+            <div class="places__description">
+              <h2 class="places__title">Домбай</h2>
+              <button class="places__btn-like" type="button"></button>
+            </div>
+          </li>
+          <li class="places__item">
+            <img
+              src="images/karachaevsk.jpg"
+              alt="Карачаево-черкесия"
+              class="places__image"
+            >
+            <div class="places__description">
+              <h2 class="places__title">Карачаево-черкесия</h2>
+              <button class="places__btn-like" type="button"></button>
+            </div>
+          </li>
+        </ul>
       </section>
     </main>
     <footer class="footer">
       <p class="footer__project">&copy; 2021 Mesto Russia</p>
     </footer>
+    <div class="popup">
+      <div class="popup__container">
+        <form class="popup__form" action="#" method="GET" name="popup-form">
+          <h2 class="popup__title">Редактировать профиль</h2>
+          <input
+            class="popup__form-item"
+            name="username"
+            id="username"
+            type="text"
+            value="Жак-Ив Кусто"
+            placeholder="Введите имя"
+            required
+          >
+          <input
+            class="popup__form-item"
+            name="hobby"
+            id="hobby"
+            type="text"
+            value="Исследователь океана"
+            placeholder="Введите ваше хобби"
+            required
+          >
+          <button class="popup__btn-save" type="submit" name="save" id="save">
+            Сохранить
+          </button>
+        </form>
+        <button class="popup__btn-close" type="button" name="close" id="close"></button>
+      </div>
+    </div>
   </body>
 </html>

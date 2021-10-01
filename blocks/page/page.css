@@ -1,7 +1,7 @@
 .page {
   display: grid;
-  margin: 0 auto;
-  max-width: 880px;
+  grid-template-columns: minmax(min-content, 880px);
+  justify-content: center;
   font-family: "Inter", "Arial", sans-serif;
   background-color: black;
   color: white;
