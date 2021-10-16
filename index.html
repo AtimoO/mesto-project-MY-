@@ -29,66 +29,6 @@
       </section>
       <section class="places">
         <ul class="places__items">
-          <li class="places__item">
-            <img
-              src="images/karachaevsk.jpg"
-              alt="Карачаево-черкесия"
-              class="places__image"
-            >
-            <div class="places__description">
-              <h2 class="places__title">Карачаево-черкесия</h2>
-              <button
-                class="places__btn-like places__btn-like_active" type="button"
-              ></button>
-            </div>
-          </li>
-          <li class="places__item">
-            <img
-              src="images/elbrus.jpg"
-              alt="Эльбрус"
-              class="places__image"
-            >
-            <div class="places__description">
-              <h2 class="places__title">Гора Эльбрус</h2>
-              <button class="places__btn-like" type="button"></button>
-            </div>
-          </li>
-          <li class="places__item">
-            <img src="images/dombai.jpg" alt="Домбай" class="places__image">
-            <div class="places__description">
-              <h2 class="places__title">Домбай</h2>
-              <button class="places__btn-like" type="button"></button>
-            </div>
-          </li>
-          <li class="places__item">
-            <img
-              src="images/elbrus.jpg"
-              alt="Эльбрус"
-              class="places__image"
-            >
-            <div class="places__description">
-              <h2 class="places__title">Гора Эльбрус</h2>
-              <button class="places__btn-like" type="button"></button>
-            </div>
-          </li>
-          <li class="places__item">
-            <img src="images/dombai.jpg" alt="Домбай" class="places__image">
-            <div class="places__description">
-              <h2 class="places__title">Домбай</h2>
-              <button class="places__btn-like" type="button"></button>
-            </div>
-          </li>
-          <li class="places__item">
-            <img
-              src="images/karachaevsk.jpg"
-              alt="Карачаево-черкесия"
-              class="places__image"
-            >
-            <div class="places__description">
-              <h2 class="places__title">Карачаево-черкесия</h2>
-              <button class="places__btn-like" type="button"></button>
-            </div>
-          </li>
         </ul>
       </section>
     </main>
@@ -124,6 +64,23 @@
         <button class="popup__btn-close" type="button" name="close" id="close"></button>
       </div>
     </div>
+    <template id="places-template">
+      <li class="places__item">
+        <img
+          src=""
+          alt=""
+          class="places__image"
+        >
+        <button class="places__btn-remove" type="button"></button>
+        <div class="places__description">
+          <h2 class="places__title"></h2>
+          <button
+            class="places__btn-like" type="button"
+          ></button>
+        </div>
+      </li>
+    </template>
+
     <script src="script/index.js"></script>
   </body>
 </html>
