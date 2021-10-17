@@ -8,6 +8,9 @@ const jobInput = formEditElement.querySelector('#job');
 // popup Add
 const popupAddElement = document.querySelector('.popup_add');
 const popupAddBtnClose = popupAddElement.querySelector('.popup__btn-close'); // close Edit
+const formAddElement = popupAddElement.querySelector('.popup__form');
+const nameCardInput = formAddElement.querySelector('#name-card');
+const linkInput = formAddElement.querySelector('#link');
 
 // profile
 const profileElement = document.querySelector('.profile'); // for btn edit and add
@@ -68,31 +71,35 @@ popupAddBtnClose.addEventListener('click', function () {
   closePopup(popupAddElement);
 });
 
-// btn save Edit
-function formSubmitHandler(evt) {
+// btn save Edit #1
+function formEditSubmitHandler(evt) {
   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы
   profileElement.querySelector('.profile__title').textContent = nameInput.value;
   profileElement.querySelector('.profile__subtitle').textContent = jobInput.value;
   closePopup(popupEditElement);
 }
 
-formEditElement.addEventListener('submit', formSubmitHandler); // Прикрепляем обработчик к форме
+formEditElement.addEventListener('submit', formEditSubmitHandler); // Прикрепляем обработчик к форме
 
 //
-function addCard (name, link) {
+function addCard(name, link) {
   const placesTemplate = document.querySelector('#places-template').content; // получаем содержимое template
   const placesElement = placesTemplate.querySelector('.places__item').cloneNode(true); // копируем содержимое шаблона
 
   placesElement.querySelector('.places__title').textContent = name; // добавляем введенные значения
-  placesElement.querySelector('.places__image').src = link; // добавляем
-  placesElement.querySelector('.places__btn-like').addEventListener('click', function(evt) { // добавляем обработчик событий для клика
+  placesElement.querySelector('.places__image').src = link;
+  // Лайк карторчки #5
+  placesElement.querySelector('.places__btn-like').addEventListener('click', function (evt) { // добавляем обработчик событий для клика
     evt.target.classList.toggle('places__btn-like_active'); // если такого класса нет, то добавляем, если есть удаляем
   });
-  placesElement.querySelector('.places__image').addEventListener('click', function(evt) { // для открытия картинок
+  placesElement.querySelector('.places__image').addEventListener('click', function (evt) { // для открытия картинок
     console.log('open img');
   });
-
-  cardsContainer.append(placesElement); // добавляем в конец контейнера songsContainer
+  // Удаление карточки #6
+  placesElement.querySelector('.places__btn-remove').addEventListener('click', function (evt) {
+    evt.target.parentElement.remove();
+  });
+  cardsContainer.prepend(placesElement); // добавляем в конец контейнера songsContainer
 };
 
 // create initial cards #2
@@ -100,24 +107,14 @@ initialCards.forEach(item => {
   addCard(item.name, item.link);
 });
 
-
-
-
-
-
-/*
-function createCard(nameValue, linkValue) {
-  ...
-  const likeButton = cardsItem.querySelector('.card__like-button');
-  ...
-
-  deleteButton.addEventListener('click', function () {
-    const currentItem = deleteButton.closest('.cards__item');
-    currentItem.remove();
-  });
-
-  likeButton.addEventListener('click', function (evt) {
-    evt.target.classList.toggle('card__like-button_active');
-  });
+// add card #4
+function formAddSubmitHandler(evt) {
+  evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы
+  addCard(nameCardInput.value, linkInput.value);
+  closePopup(popupAddElement);
+  nameCardInput.value = '';  // обнуляем введеные значения
+  linkInput.value = '';
 }
-*/
+
+formAddElement.addEventListener('submit', formAddSubmitHandler); // Прикрепляем обработчик к форме
+
