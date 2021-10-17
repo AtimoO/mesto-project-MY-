@@ -99,7 +99,7 @@ function addCard(name, link) {
   placesElement.querySelector('.places__btn-remove').addEventListener('click', function (evt) {
     evt.target.parentElement.remove();
   });
-  cardsContainer.prepend(placesElement); // добавляем в конец контейнера songsContainer
+  cardsContainer.prepend(placesElement); // добавляем в начало контейнера
 };
 
 // create initial cards #2
