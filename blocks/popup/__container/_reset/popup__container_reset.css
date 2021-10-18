@@ -1,0 +1,6 @@
+.popup__container_reset {
+  max-width: none;
+  min-height: none;
+  background-color: rgba(0, 0, 0, 0);;
+  border-radius: 0;
+}

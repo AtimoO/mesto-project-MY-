@@ -23,13 +23,17 @@
             <h1 class="profile__title">Жак-Ив Кусто</h1>
             <p class="profile__subtitle">Исследователь океана</p>
           </div>
-          <button class="profile__edit" type="button" name="edit" id="edit"></button>
+          <button
+            class="profile__edit"
+            type="button"
+            name="edit"
+            id="edit"
+          ></button>
         </div>
         <button class="profile__add" type="button" name="add" id="add"></button>
       </section>
       <section class="places">
-        <ul class="places__items">
-        </ul>
+        <ul class="places__items"></ul>
       </section>
     </main>
     <footer class="footer">
@@ -61,7 +65,12 @@
             Сохранить
           </button>
         </form>
-        <button class="popup__btn-close" type="button" name="close" id="close"></button>
+        <button
+          class="popup__btn-close"
+          type="button"
+          name="closeEdit"
+          id="closeEdit"
+        ></button>
       </div>
     </div>
     <div class="popup popup_add">
@@ -84,40 +93,54 @@
             placeholder="Ссылка на картинку"
             required
           >
-          <button class="popup__btn-save" type="submit" name="save" id="save">
+          <!-- возможно надо изменить название класса-->
+          <button
+            class="popup__btn-save"
+            type="submit"
+            name="create"
+            id="create"
+          >
             Создать
           </button>
         </form>
-        <button class="popup__btn-close" type="button" name="close" id="close"></button>
+        <button
+          class="popup__btn-close"
+          type="button"
+          name="closeAdd"
+          id="closeAdd"
+        ></button>
       </div>
     </div>
 
-
-    <div class="popup popup_view-image popup_opened">
-      <div class="popup__container">
-        <img src="http://via.placeholder.com/816x540" alt="" class="popup__image">
-        <button class="popup__btn-close" type="button" name="close" id="close"></button>
+    <!-- возможно это шаблон? -->
+    <div class="popup popup_view-image">
+        <div class="popup__container popup__container_reset">
+          <img
+            src=""
+            alt=""
+            class="popup__image"
+          >
+          <p class="popup__text">Название картинки</p>
+          <button
+            class="popup__btn-close"
+            type="button"
+            name="closeView"
+            id="closeView"
+          ></button>
       </div>
     </div>
 
-    
     <template id="places-template">
       <li class="places__item">
-        <img
-          src=""
-          alt=""
-          class="places__image"
-        >
+        <img src="" alt="" class="places__image">
         <button class="places__btn-remove" type="button"></button>
         <div class="places__description">
           <h2 class="places__title"></h2>
-          <button
-            class="places__btn-like" type="button"
-          ></button>
+          <button class="places__btn-like" type="button"></button>
         </div>
       </li>
     </template>
     <script src="blocks/places/places.js"></script>
-    <script src="pages/index.js"></script>
+    <script src="script/index.js"></script>
   </body>
 </html>
