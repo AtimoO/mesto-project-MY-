@@ -24,7 +24,7 @@ const profileBtnAdd = profileElement.querySelector('.profile__add');
 const placesElement = document.querySelector('.places');
 const cardsContainer = placesElement.querySelector('.places__items');
 
-// open/close #1
+// open/close popup
 function openPopup(popupElement) {
   popupElement.classList.add('popup_opened');
 }
@@ -33,7 +33,6 @@ function closePopup(popupElement) {
   popupElement.classList.remove('popup_opened');
 }
 
-// open/close modal edit #1 #3
 profileBtnEdit.addEventListener('click', function () {
   openPopup(popupEditElement);
 });
@@ -51,7 +50,7 @@ popupViewImageBtnClose.addEventListener('click', function () {
   closePopup(popupViewImageElement);
 });
 
-// btn save Edit #1
+// saveBtn popupEdit
 function formEditSubmitHandler(evt) {
   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы
   profileElement.querySelector('.profile__title').textContent = nameInput.value;
@@ -61,44 +60,43 @@ function formEditSubmitHandler(evt) {
 
 formEditElement.addEventListener('submit', formEditSubmitHandler); // Прикрепляем обработчик к форме
 
-// function add places
 function addPlaces(name, link) {
   const placesTemplate = document.querySelector('#places-template').content; // получаем содержимое template
   const placesElement = placesTemplate.querySelector('.places__item').cloneNode(true); // копируем содержимое шаблона
-
   placesElement.querySelector('.places__title').textContent = name;
   placesElement.querySelector('.places__image').src = link;
   placesElement.querySelector('.places__image').alt = name;
-  // Лайк карторчки #5
-  placesElement.querySelector('.places__btn-like').addEventListener('click', function (evt) { // добавляем обработчик событий для клика
-    evt.target.classList.toggle('places__btn-like_active'); // если такого класса нет, то добавляем, если есть удаляем
+
+  placesElement.querySelector('.places__btn-like').addEventListener('click', function (evt) {
+    evt.target.classList.toggle('places__btn-like_active');
   });
-  placesElement.querySelector('.places__image').addEventListener('click', function (evt) { // для открытия картинок
+  // popup view img
+  placesElement.querySelector('.places__image').addEventListener('click', function (evt) {
     const popupImage = popupViewImageElement.querySelector('.popup__image');
-    const popupText = popupViewImageElement.querySelector('.popup__text').textContent = name;
+    popupViewImageElement.querySelector('.popup__text').textContent = name;
     popupImage.src = link;
     popupImage.alt = name;
     openPopup(popupViewImageElement);
   });
-  // Удаление карточки #6
+  // Удаление карточки
   placesElement.querySelector('.places__btn-remove').addEventListener('click', function (evt) {
     evt.target.parentElement.remove();
   });
   cardsContainer.prepend(placesElement); // добавляем в начало контейнера
 };
 
-// create initial cards #2
+// create initial cards
 initialPlaces.forEach(item => {
   addPlaces(item.name, item.link);
 });
 
-// add Places in form
+// createBtn popupAdd
 function formAddSubmitHandler(evt) {
-  evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы
+  evt.preventDefault();
   addPlaces(nameCardInput.value, linkInput.value);
   closePopup(popupAddElement);
-  nameCardInput.value = '';  // обнуляем введеные значения
+  nameCardInput.value = '';
   linkInput.value = '';
 }
 
-formAddElement.addEventListener('submit', formAddSubmitHandler); // Прикрепляем обработчик к форме
+formAddElement.addEventListener('submit', formAddSubmitHandler);
