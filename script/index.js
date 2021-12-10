@@ -1,3 +1,4 @@
+// blocks variables-----------------------------------------------
 // popup Edit
 const popupEditElement = document.querySelector('.popup_edit');
 const popupEditBtnClose = popupEditElement.querySelector('.popup__btn-close');
@@ -26,6 +27,8 @@ const placesElement = document.querySelector('.places');
 const placesTemplate = document.querySelector('#places-template').content; // get template
 const cardsContainer = placesElement.querySelector('.places__items');
 
+
+// blocks functions ------------------------------------------------------
 function openPopup(popupElement) {
   popupElement.classList.add('popup_opened');
 }
@@ -47,14 +50,14 @@ function addPlaces(name, link) {
   // likeBtn
   placesItemElement.querySelector('.places__btn-like').addEventListener('click', likeBtn);
   // popup view img
-  placesItemElement.querySelector('.places__image').addEventListener('click', function (evt) {
+  placesItemElement.querySelector('.places__image').addEventListener('click', evt => {
     popupImageTitle.textContent = name;
     popupImage.src = link;
     popupImage.alt = name;
     openPopup(popupViewImageElement);
   });
   // Удаление карточки
-  placesItemElement.querySelector('.places__btn-remove').addEventListener('click', function (evt) {
+  placesItemElement.querySelector('.places__btn-remove').addEventListener('click', evt => {
     evt.target.parentElement.remove();
   });
   return placesItemElement;
@@ -79,7 +82,8 @@ function handlerAddFormSubmit(evt) {
   linkInput.value = '';
 }
 
-// open/close popup
+// blocks EventListener --------------------------------------------------------------
+
 profileBtnEdit.addEventListener('click', function () {
   openPopup(popupEditElement);
 });
@@ -100,6 +104,28 @@ formEditElement.addEventListener('submit', handlerEditFormSubmit); // Прикр
 // createBtn popupAdd
 formAddElement.addEventListener('submit', handlerAddFormSubmit);
 // create initial cards
-initialPlaces.forEach(item => {
-  renderCard(item.name, item.link);
+initialPlaces.forEach(place => {
+  renderCard(place.name, place.link);
 });
+
+function closePopupByEsc(evt) {
+  if (evt.key === 'Escape') {
+    closePopup(evt.target.parentElement.parentElement.parentElement); // найти лучшее решение
+  }
+}
+
+function closePopupOverlay (evt) {
+  console.log(evt);
+}
+
+popupEditElement.addEventListener('click', closePopupOverlay)
+popupAddElement.addEventListener('click', closePopupOverlay)
+popupViewImageElement.addEventListener('click', closePopupOverlay)
+
+nameInput.addEventListener('keydown', closePopupByEsc)
+
+jobInput.addEventListener('keydown', closePopupByEsc)
+
+nameCardInput.addEventListener('keydown', closePopupByEsc)
+
+linkInput.addEventListener('keydown', closePopupByEsc)
