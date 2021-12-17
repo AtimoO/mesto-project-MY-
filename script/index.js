@@ -1,16 +1,16 @@
 // blocks variables-----------------------------------------------
 // popup Edit
-const popupEditElement = document.querySelector('.popup_edit');
-const popupEditBtnClose = popupEditElement.querySelector('.popup__btn-close');
-const formEditElement = popupEditElement.querySelector('.popup__form');
-const nameInput = formEditElement.querySelector('#name');
-const jobInput = formEditElement.querySelector('#job');
+const popupEditElement = document.querySelector('.popup_edit'); // можно взять из формы
+const popupEditBtnClose = popupEditElement.querySelector('.popup__btn-close'); // можно взять из формы
+const formEditElement = popupEditElement.querySelector('.popup__form'); // можно взять из формы
+const nameInput = formEditElement.querySelector('#name'); // можно взять из формы
+const jobInput = formEditElement.querySelector('#job'); // можно взять из формы
 // popup Add
-const popupAddElement = document.querySelector('.popup_add');
-const popupAddBtnClose = popupAddElement.querySelector('.popup__btn-close');
-const formAddElement = popupAddElement.querySelector('.popup__form');
-const nameCardInput = formAddElement.querySelector('#name-card');
-const linkInput = formAddElement.querySelector('#link');
+const popupAddElement = document.querySelector('.popup_add'); // можно взять из формы
+const popupAddBtnClose = popupAddElement.querySelector('.popup__btn-close'); // можно взять из формы
+const formAddElement = popupAddElement.querySelector('.popup__form'); // можно взять из формы
+const nameCardInput = formAddElement.querySelector('#name-card'); // можно взять из формы
+const linkInput = formAddElement.querySelector('#link'); // можно взять из формы
 // popup View-image
 const popupViewImageElement = document.querySelector('.popup_view-image');
 const popupImage = popupViewImageElement.querySelector('.popup__image');
@@ -85,16 +85,16 @@ function handlerAddFormSubmit(evt) {
 // blocks EventListener --------------------------------------------------------------
 
 profileBtnEdit.addEventListener('click', function () {
-  openPopup(popupEditElement);
+  openPopup(popupEditElement); // как то передать из формы
 });
 profileBtnAdd.addEventListener('click', function () {
-  openPopup(popupAddElement);
+  openPopup(popupAddElement); // как то передать из формы
 });
 popupEditBtnClose.addEventListener('click', function () {
-  closePopup(popupEditElement);
+  closePopup(popupEditElement); // как то передать из формы
 });
 popupAddBtnClose.addEventListener('click', function () {
-  closePopup(popupAddElement);
+  closePopup(popupAddElement); // как то передать из формы
 });
 popupViewImageBtnClose.addEventListener('click', function () {
   closePopup(popupViewImageElement);
@@ -108,6 +108,9 @@ initialPlaces.forEach(place => {
   renderCard(place.name, place.link);
 });
 
+
+// esc ----------------------------------------------------------
+
 function closePopupByEsc(evt) {
   if (evt.key === 'Escape') {
     closePopup(evt.target.parentElement.parentElement.parentElement); // найти лучшее решение
@@ -115,7 +118,7 @@ function closePopupByEsc(evt) {
 }
 
 function closePopupOverlay (evt) {
-  console.log(evt);
+  /* console.log(evt); */
 }
 
 popupEditElement.addEventListener('click', closePopupOverlay)
@@ -129,3 +132,83 @@ jobInput.addEventListener('keydown', closePopupByEsc)
 nameCardInput.addEventListener('keydown', closePopupByEsc)
 
 linkInput.addEventListener('keydown', closePopupByEsc)
+
+
+// valid -----------------------------------------------------------
+const enableValidation = () => {
+  // Найдём все формы с указанным классом в DOM,
+  const formList = Array.from(document.querySelectorAll(".popup__form"));
+  // Переберём полученную коллекцию
+  formList.forEach((formElement) => {
+    formElement.addEventListener("submit", (evt) => {
+      evt.prevenDefault();
+    });
+    // Для каждой формы вызовем функцию setEventListeners
+    const fieldsetList = Array.from(formElement.querySelectorAll('.popup__form-set'));
+    fieldsetList.forEach(fieldsetElement => {
+      setEventListeners(fieldsetElement);
+    });
+  });
+};
+
+// Добавление обработчиков всем полям формы
+const setEventListeners = (formElement) => {
+  // Находим все поля внутри формы,
+  const inputList = Array.from(formElement.querySelectorAll(".popup__form-input"));
+  const buttonElement = formElement.querySelector('.popup__form-submit');
+  // Это проверит состояние кнопки при первой загрузке страницы. Тогда кнопка перестанет быть активной до ввода данных в одно из полей.
+  toggleButtonState(inputList, buttonElement)
+  inputList.forEach((inputElement) => {
+    // каждому полю добавим обработчик события input
+    inputElement.addEventListener("input", function () {
+      checkInputValidity(formElement, inputElement);
+      toggleButtonState(inputList, buttonElement);
+    });
+  });
+};
+
+const toggleButtonState = (inputList, buttonElement) => {
+  // Если есть хотя бы один невалидный инпут
+  if (hasInvalidInput(inputList)) {
+    // сделай кнопку неактивной
+    buttonElement.classList.add('popup__form-submit_inactive');
+    buttonElement.setAttribute('disabled', true);
+  } else {
+        // иначе сделай кнопку активной
+    buttonElement.classList.remove('popup__form-submit_inactive');
+    buttonElement.removeAttribute('disabled');
+  }
+};
+
+// Блокируем кнопку отправки формы
+const hasInvalidInput = (inputList) => {
+  // проходим по этому массиву методом some
+  return inputList.some((inputElement) => {
+    // Если поле не валидно, колбэк вернёт true
+    return !inputElement.validity.valid;
+  });
+};
+
+const checkInputValidity = (formElement, inputElement) => {
+  if (!inputElement.validity.valid) {
+    showInputError(formElement, inputElement, inputElement.validationMessage);
+  } else {
+    hideInputError(formElement, inputElement);
+  }
+};
+
+const showInputError = (formElement, inputElement, errorMessage) => {
+  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+  inputElement.classList.add("popup__form-input_invalid");
+  errorElement.textContent = errorMessage;
+  errorElement.classList.add("popup__form-input-error_active");
+};
+
+const hideInputError = (formElement, inputElement) => {
+  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+  inputElement.classList.remove("popup__form-input_invalid");
+  errorElement.classList.remove("popup__form-input-error_active");
+  errorElement.textContent = "";
+};
+
+enableValidation();

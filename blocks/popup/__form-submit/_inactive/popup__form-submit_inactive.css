@@ -1,0 +1,10 @@
+.popup__form-submit_inactive {
+  color: rgb(0, 0, 0, .2);
+  background-color: #ffffff;
+  border: 1px solid rgb(0, 0, 0, .2);
+  cursor: default;
+}
+
+.popup__form-submit_inactive:hover {
+  opacity: 1;
+}
