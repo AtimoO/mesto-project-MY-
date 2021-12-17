@@ -50,34 +50,38 @@
         >
           <fieldset class="popup__form-set">
             <h2 class="popup__title">Редактировать профиль</h2> <!-- tag: legend? -->
-            <input
-              class="popup__form-input"
-              name="name"
-              id="name"
-              type="text"
-              value="Жак-Ив Кусто"
-              placeholder="Введите имя"
-              required
-              minlength="2"
-              maxlength="40"
-            >
-            <span class="popup__form-input-error name-error"
-              >Вы пропустили это поле.</span
-            >
-            <input
-              class="popup__form-input"
-              name="job"
-              id="job"
-              type="text"
-              value="Исследователь океана"
-              placeholder="Введите вашу профессию"
-              required
-              minlength="2"
-              maxlength="200"
-            >
-            <span class="popup__form-input-error job-error"
-              >Вы пропустили это поле.</span
-            >
+            <div class="popup__container-input">
+              <input
+                class="popup__form-input"
+                name="name"
+                id="name"
+                type="text"
+                value="Жак-Ив Кусто"
+                placeholder="Введите имя"
+                required
+                minlength="2"
+                maxlength="40"
+              >
+              <span class="popup__form-input-error name-error"
+                >Вы пропустили это поле.</span
+              >
+            </div>
+            <div class="popup__container-input">
+              <input
+                class="popup__form-input"
+                name="job"
+                id="job"
+                type="text"
+                value="Исследователь океана"
+                placeholder="Введите вашу профессию"
+                required
+                minlength="2"
+                maxlength="200"
+              >
+              <span class="popup__form-input-error job-error"
+                >Вы пропустили это поле.</span
+              >
+           </div>
             <button
               class="popup__form-submit"
               type="submit"
@@ -107,30 +111,34 @@
         >
           <fieldset class="popup__form-set">
             <h2 class="popup__title">Новое место</h2> <!-- tag: legend? -->
-            <input
-              class="popup__form-input"
-              name="name-card"
-              id="name-card"
-              type="text"
-              placeholder="Название"
-              required
-              minlength="2"
-              maxlength="30"
-            >
-            <span class="popup__form-input-error name-card-error"
-              >Вы пропустили это поле.</span
-            >
-            <input
-              class="popup__form-input"
-              name="link"
-              id="link"
-              type="url"
-              placeholder="Ссылка на картинку"
-              required
-            >
-            <span class="popup__form-input-error link-error"
-              >Вы пропустили это поле.</span
-            >
+            <div class="popup__container-input">
+              <input
+                class="popup__form-input"
+                name="name-card"
+                id="name-card"
+                type="text"
+                placeholder="Название"
+                required
+                minlength="2"
+                maxlength="30"
+              >
+              <span class="popup__form-input-error name-card-error"
+                >Вы пропустили это поле.</span
+              >
+            </div>
+            <div class="popup__container-input">
+              <input
+                class="popup__form-input"
+                name="link"
+                id="link"
+                type="url"
+                placeholder="Ссылка на картинку"
+                required
+              >
+              <span class="popup__form-input-error link-error"
+                >Вы пропустили это поле.</span
+              >
+            </div>
             <button
               class="popup__form-submit"
               type="submit"
