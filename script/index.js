@@ -119,7 +119,7 @@ initialPlaces.forEach((place) => {
 
 function closePopupByEsc(evt) {
   if (evt.key === 'Escape') {
-    closePopup(evt.target.parentElement.parentElement.parentElement); // найти лучшее решение
+    closePopup(evt.target.parentElement.parentElement.parentElement.parentElement.parentElement); // найти лучшее решение
   }
 }
 
@@ -127,7 +127,7 @@ function closePopupOverlay(evt) {
   /* console.log(evt); */
 }
 
-popupEditElement.addEventListener('click', closePopupOverlay);
+popupEditElement.addEventListener('click', closePopupOverlay); // closePopupOverlay('name')
 popupAddElement.addEventListener('click', closePopupOverlay);
 popupViewImageElement.addEventListener('click', closePopupOverlay);
 
@@ -140,21 +140,47 @@ nameCardInput.addEventListener('keydown', closePopupByEsc);
 linkInput.addEventListener('keydown', closePopupByEsc);
 
 // valid -----------------------------------------------------------
-const enableValidation = () => {
-  // Найдём все формы с указанным классом в DOM,
-  const formList = Array.from(document.querySelectorAll('.popup__form'));
-  // Переберём полученную коллекцию
-  formList.forEach((formElement) => {
-    formElement.addEventListener('submit', (evt) => {
-      evt.prevenDefault();
-    });
-    // Для каждой формы вызовем функцию setEventListeners
-    const fieldsetList = Array.from(
-      formElement.querySelectorAll('.popup__form-set')
-    );
-    fieldsetList.forEach((fieldsetElement) => {
-      setEventListeners(fieldsetElement);
-    });
+const showInputError = (formElement, inputElement, errorMessage) => {
+  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+  inputElement.classList.add('popup__form-input_invalid');
+  errorElement.textContent = errorMessage;
+  errorElement.classList.add('popup__form-input-error_active');
+};
+
+const hideInputError = (formElement, inputElement) => {
+  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+  inputElement.classList.remove('popup__form-input_invalid');
+  errorElement.classList.remove('popup__form-input-error_active');
+  errorElement.textContent = '';
+};
+
+const checkInputValidity = (formElement, inputElement) => {
+  if (!inputElement.validity.valid || !inputElement.value.trim().length) { // !inputElement.value.trim().length
+    showInputError(formElement, inputElement, inputElement.validationMessage);
+  } else {
+    hideInputError(formElement, inputElement);
+  }
+};
+
+const toggleButtonState = (inputList, buttonElement) => {
+  // Если есть хотя бы один невалидный инпут
+  if (hasInvalidInput(inputList)) {
+    // если не валид кнопка неактив
+    buttonElement.classList.add('popup__form-submit_inactive');
+    buttonElement.setAttribute('disabled', true);
+  } else {
+    // если актив
+    buttonElement.classList.remove('popup__form-submit_inactive');
+    buttonElement.removeAttribute('disabled');
+  }
+};
+
+// Блокируем кнопку отправки формы
+const hasInvalidInput = (inputList) => {
+  // проходим по этому массиву методом some
+  return inputList.some((inputElement) => {
+    // Если поле не валидно, колбэк вернёт true
+    return !inputElement.validity.valid; // !inputElement.value.trim().length
   });
 };
 
@@ -176,49 +202,22 @@ const setEventListeners = (formElement) => {
   });
 };
 
-const toggleButtonState = (inputList, buttonElement) => {
-  // Если есть хотя бы один невалидный инпут
-  if (hasInvalidInput(inputList)) {
-    // если не валид кнопка неактив
-    buttonElement.classList.add('popup__form-submit_inactive');
-    buttonElement.setAttribute('disabled', true);
-  } else {
-    // если актив
-    buttonElement.classList.remove('popup__form-submit_inactive');
-    buttonElement.removeAttribute('disabled');
-  }
-};
-
-// Блокируем кнопку отправки формы
-const hasInvalidInput = (inputList) => {
-  // проходим по этому массиву методом some
-  return inputList.some((inputElement) => {
-    // Если поле не валидно, колбэк вернёт true
-    return !inputElement.validity.valid;
+const enableValidation = () => {
+  // Найдём все формы с указанным классом в DOM,
+  const formList = Array.from(document.querySelectorAll('.popup__form'));
+  // Переберём полученную коллекцию
+  formList.forEach((formElement) => {
+    formElement.addEventListener('submit', (evt) => {
+      evt.prevenDefault();
+    });
+    // Для каждой формы вызовем функцию setEventListeners
+    const fieldsetList = Array.from(
+      formElement.querySelectorAll('.popup__form-set')
+    );
+    fieldsetList.forEach((fieldsetElement) => {
+      setEventListeners(fieldsetElement);
+    });
   });
-};
-
-const checkInputValidity = (formElement, inputElement) => {
-  if (!inputElement.validity.valid) {
-    // !inputElement.value.trim().length
-    showInputError(formElement, inputElement, inputElement.validationMessage);
-  } else {
-    hideInputError(formElement, inputElement);
-  }
-};
-
-const showInputError = (formElement, inputElement, errorMessage) => {
-  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-  inputElement.classList.add('popup__form-input_invalid');
-  errorElement.textContent = errorMessage;
-  errorElement.classList.add('popup__form-input-error_active');
-};
-
-const hideInputError = (formElement, inputElement) => {
-  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-  inputElement.classList.remove('popup__form-input_invalid');
-  errorElement.classList.remove('popup__form-input-error_active');
-  errorElement.textContent = '';
 };
 
 enableValidation();
