@@ -1,4 +1,4 @@
-.popup__form-item {
+.popup__form-input {
   border: 0;
   margin: 0 0 17px;
   width: 100%;
@@ -13,6 +13,6 @@
   font-family: inherit;
 }
 
-.popup__form-item:focus {
+.popup__form-input:focus {
   outline-color: rgb(134, 121, 121);
 }
