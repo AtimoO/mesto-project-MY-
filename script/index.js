@@ -89,8 +89,6 @@ function handlerAddFormSubmit(evt) {
   linkInput.value = '';
 }
 
-// blocks EventListener --------------------------------------------------------------
-
 profileBtnEdit.addEventListener('click', function () {
   openPopup(popupEditElement); // как то передать из формы
 });
@@ -115,30 +113,6 @@ initialPlaces.forEach((place) => {
   renderCard(place.name, place.link);
 });
 
-// esc ----------------------------------------------------------
-
-function closePopupByEsc(evt) {
-  if (evt.key === 'Escape') {
-    closePopup(evt.target.parentElement.parentElement.parentElement.parentElement.parentElement); // найти лучшее решение
-  }
-}
-
-function closePopupOverlay(evt) {
-  /* console.log(evt); */
-}
-
-popupEditElement.addEventListener('click', closePopupOverlay); // closePopupOverlay('name')
-popupAddElement.addEventListener('click', closePopupOverlay);
-popupViewImageElement.addEventListener('click', closePopupOverlay);
-
-nameInput.addEventListener('keydown', closePopupByEsc);
-
-jobInput.addEventListener('keydown', closePopupByEsc);
-
-nameCardInput.addEventListener('keydown', closePopupByEsc);
-
-linkInput.addEventListener('keydown', closePopupByEsc);
-
 // valid -----------------------------------------------------------
 const showInputError = (formElement, inputElement, errorMessage) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
@@ -155,13 +129,14 @@ const hideInputError = (formElement, inputElement) => {
 };
 
 const checkInputValidity = (formElement, inputElement) => {
-  if (!inputElement.validity.valid || !inputElement.value.trim().length) { // !inputElement.value.trim().length
+  if (!inputElement.validity.valid || !inputElement.value.trim().length) { // !inputElement.value.trim().length - проверка пустоты
     showInputError(formElement, inputElement, inputElement.validationMessage);
   } else {
     hideInputError(formElement, inputElement);
   }
 };
 
+//Переключатель состояние кнопки
 const toggleButtonState = (inputList, buttonElement) => {
   // Если есть хотя бы один невалидный инпут
   if (hasInvalidInput(inputList)) {
@@ -203,7 +178,7 @@ const setEventListeners = (formElement) => {
 };
 
 const enableValidation = () => {
-  // Найдём все формы с указанным классом в DOM,
+  // Найдём все формы в DOM
   const formList = Array.from(document.querySelectorAll('.popup__form'));
   // Переберём полученную коллекцию
   formList.forEach((formElement) => {
@@ -221,3 +196,25 @@ const enableValidation = () => {
 };
 
 enableValidation();
+
+// close popup overlay and key = Escape
+function closePopupInOverlay(evt) {
+  if (evt.target.classList.contains('popup')) {
+    closePopup(evt.target);
+  }
+}
+
+function closePopupByEsc(evt) {
+  if (evt.key === 'Escape') {
+    closePopup(evt.target.parentElement.parentElement.parentElement.parentElement.parentElement); // найти лучшее решение
+  }
+}
+
+popupEditElement.addEventListener('click', closePopupInOverlay);
+popupAddElement.addEventListener('click', closePopupInOverlay);
+popupViewImageElement.addEventListener('click', closePopupInOverlay);
+
+nameInput.addEventListener('keydown', closePopupByEsc);
+jobInput.addEventListener('keydown', closePopupByEsc);
+nameCardInput.addEventListener('keydown', closePopupByEsc);
+linkInput.addEventListener('keydown', closePopupByEsc);
