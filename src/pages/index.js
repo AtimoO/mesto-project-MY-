@@ -1,13 +1,14 @@
 // import
-import { enableValidation } from "./validate.js";
-import { openPopup, closePopup } from "./utils.js";
+import './index.css';
+import { enableValidation } from "../components/validate.js";
+import { openPopup, closePopup } from "../components/utils.js";
 import {
   popupViewImageElement,
   renderCard,
   handlerEditFormSubmit,
   handlerAddFormSubmit,
-} from "./card.js";
-import { closePopupInOverlay } from "./modal.js";
+} from "../components/card.js";
+import { closePopupInOverlay } from "../components/modal.js";
 
 const optionsForm = {
   formSelector: ".popup__form",

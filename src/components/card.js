@@ -8,7 +8,7 @@ import {
   linkInput,
   profileTitle,
   profileSubtitle,
-} from "./index.js";
+} from "../pages/index.js";
 
 const popupViewImageElement = document.querySelector(".popup_view-image");
 const popupImage = popupViewImageElement.querySelector(".popup__image");
