@@ -1,4 +1,6 @@
-import { closePopup } from './utils.js';
+import { closePopup } from "./utils.js";
+import { popupViewImageElement } from "./card.js";
+import { popupEditElement, popupAddElement } from "./index.js";
 
 function closePopupInOverlay(evt) {
   if (evt.target.classList.contains("popup")) {
@@ -6,4 +8,12 @@ function closePopupInOverlay(evt) {
   }
 }
 
-export { closePopupInOverlay };
+function closePopupByEscape(evt) {
+  if (evt.key === "Escape") {
+    closePopup(popupEditElement);
+    closePopup(popupAddElement);
+    closePopup(popupViewImageElement);
+  }
+}
+
+export { closePopupInOverlay, closePopupByEscape };
