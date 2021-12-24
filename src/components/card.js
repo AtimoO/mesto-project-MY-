@@ -36,19 +36,17 @@ function addCards(name, link) {
   const placesImage = placesItemElement.querySelector(".places__image");
   placesImage.src = link;
   placesImage.alt = name;
+  // popup view img
+  placesImage.addEventListener("click", (evt) => { // сорян :)
+    popupImageTitle.textContent = name;
+    popupImage.src = link;
+    popupImage.alt = name;
+    openPopup(popupViewImageElement);
+  });
   // likeBtn
   placesItemElement
     .querySelector(".places__btn-like")
     .addEventListener("click", likeBtn);
-  // popup view img
-  placesItemElement
-    .querySelector(`.${placesImage.className}`)
-    .addEventListener("click", (evt) => {
-      popupImageTitle.textContent = name;
-      popupImage.src = link;
-      popupImage.alt = name;
-      openPopup(popupViewImageElement);
-    });
   // Удаление карточки
   placesItemElement
     .querySelector(".places__btn-remove")
