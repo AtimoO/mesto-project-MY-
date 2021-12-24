@@ -1,14 +1,15 @@
 import { openPopup, closePopup } from "./utils.js";
 import {
+  optionsForm,
   popupEditElement,
-  popupAddElement,
   nameInput,
   jobInput,
+  popupAddElement,
   nameCardInput,
   linkInput,
   profileTitle,
   profileSubtitle,
-} from "../pages/index.js";
+} from "./utils/constants.js";
 
 const popupViewImageElement = document.querySelector(".popup_view-image");
 const popupImage = popupViewImageElement.querySelector(".popup__image");
@@ -41,7 +42,7 @@ function addCards(name, link) {
     .addEventListener("click", likeBtn);
   // popup view img
   placesItemElement
-    .querySelector(".places__image")
+    .querySelector(`.${placesImage.className}`)
     .addEventListener("click", (evt) => {
       popupImageTitle.textContent = name;
       popupImage.src = link;
@@ -70,6 +71,11 @@ function handlerAddFormSubmit(evt) {
   closePopup(popupAddElement);
   nameCardInput.value = "";
   linkInput.value = "";
+  const buttonElement = evt.target.querySelector(
+    optionsForm.submitButtonSelector
+  );
+  buttonElement.classList.add(optionsForm.inactiveButtonClass);
+  buttonElement.setAttribute("disabled", true);
 }
 
 export {
