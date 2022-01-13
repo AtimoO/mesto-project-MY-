@@ -138,7 +138,7 @@ export function handlerUpdatePhotoFormSubmit(evt) {
 }
 
 export function handlerAddFormSubmit(evt) {
-  setButtonState(evt.submitter, true);
+  evt.submitter.textContent = "Создание...";
   addCardServer(nameCardInput.value, linkInput.value)
     .then((card) => {
       renderCard(card._id, card.name, card.link, card.likes.length, card.owner._id, false);
@@ -155,7 +155,7 @@ export function handlerAddFormSubmit(evt) {
       closePopup(popupAddElement);
     })
     .finally(() => {
-      setButtonState(evt.submitter, false);
+      evt.submitter.textContent = "Создать"
       closePopup(popupAddElement);
     });
 }
