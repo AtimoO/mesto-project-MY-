@@ -31,7 +31,6 @@ loaderProfileInfo();
 getCardsServer()
   .then((cards) => {
     cards.forEach((place) => {
-      console.log(`Author: ${place.owner.name}`, place.likes)
       const liked = Boolean(
         place.likes.find((item) => item._id === currentUserId)
       );
