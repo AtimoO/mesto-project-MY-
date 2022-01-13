@@ -1,37 +1,65 @@
 // import
 import "./index.css";
+import { loaderProfileInfo, currentUserId } from "../components/profile.js";
 import {
   optionsForm,
-  initialPlaces,
   popups,
   popupEditElement,
   formEditElement,
   popupAddElement,
+  popupUpdatePhotoElement,
   formAddElement,
+  formUpdatePhotoElement,
+} from "../components/utils/constants.js";
+import {
+  profileBtnUpdatePhoto,
   profileBtnEdit,
   profileBtnAdd,
-} from "../components/utils/constants.js";
+} from "../components/profile.js";
 import { enableValidation } from "../components/validate.js";
 import { openPopup, closePopup } from "../components/utils.js";
 import {
   renderCard,
   handlerEditFormSubmit,
+  handlerUpdatePhotoFormSubmit,
   handlerAddFormSubmit,
 } from "../components/card.js";
+import { getCardsServer } from "../components/api.js";
 
-initialPlaces.forEach((place) => {
-  renderCard(place.name, place.link);
-});
+loaderProfileInfo();
 
-profileBtnEdit.addEventListener("click", function () {
+getCardsServer()
+  .then((cards) => {
+    cards.forEach((place) => {
+      console.log(`Author: ${place.owner.name}`, place.likes)
+      const liked = Boolean(
+        place.likes.find((item) => item._id === currentUserId)
+      );
+      renderCard(
+        place._id,
+        place.name,
+        place.link,
+        place.likes.length,
+        place.owner._id,
+        liked
+      );
+    });
+  })
+  .catch((error) => console.log(error));
+  console.log(currentUserId)
+
+profileBtnEdit.addEventListener("click", () => {
   openPopup(popupEditElement);
 });
-profileBtnAdd.addEventListener("click", function () {
+profileBtnAdd.addEventListener("click", () => {
   openPopup(popupAddElement);
+});
+profileBtnUpdatePhoto.addEventListener("click", () => {
+  openPopup(popupUpdatePhotoElement);
 });
 
 popups.forEach((popup) => {
-  popup.addEventListener("click", (evt) => {
+  popup.addEventListener("mousedown", (evt) => {
     if (evt.target.classList.contains("popup_opened")) {
       closePopup(popup);
     }
@@ -44,5 +72,7 @@ popups.forEach((popup) => {
 formEditElement.addEventListener("submit", handlerEditFormSubmit);
 
 formAddElement.addEventListener("submit", handlerAddFormSubmit);
+
+formUpdatePhotoElement.addEventListener("submit", handlerUpdatePhotoFormSubmit);
 
 enableValidation(optionsForm);
