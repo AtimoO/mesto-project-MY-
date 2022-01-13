@@ -45,7 +45,8 @@ function addCards(idCard, nameCard, link, likes, idAuthor, liked) {
     .cloneNode(true); // copy template
   placesItemElement.idCard = idCard;
   placesItemElement.querySelector(".places__title").textContent = nameCard;
-  placesItemElement.querySelector(".places__sum-like").textContent = likes;
+  const likesCounter = placesItemElement.querySelector(".places__sum-like");
+  likesCounter.textContent = likes;
   const placesImage = placesItemElement.querySelector(".places__image");
   placesImage.src = link;
   placesImage.alt = nameCard;
@@ -67,16 +68,14 @@ function addCards(idCard, nameCard, link, likes, idAuthor, liked) {
       if (!evt.target.classList.contains("places__btn-like_active")) {
         addLike(placesItemElement.idCard)
           .then((data) => {
-            placesItemElement.querySelector(".places__sum-like").textContent =
-              data.likes.length;
+            likesCounter.textContent = data.likes.length;
             likeBtn(evt);
           })
           .catch((error) => console.log(error));
       } else {
         removeLike(placesItemElement.idCard)
           .then((data) => {
-            placesItemElement.querySelector(".places__sum-like").textContent =
-              data.likes.length;
+            likesCounter.textContent = data.likes.length;
             likeBtn(evt);
           })
           .catch((error) => console.log(error));
@@ -110,14 +109,13 @@ export function handlerEditFormSubmit(evt) {
     .then(() => {
       profileTitle.textContent = nameInput.value;
       profileSubtitle.textContent = jobInput.value;
+      closePopup(popupEditElement);
     })
     .catch((error) => {
       console.log(error);
-      closePopup(popupEditElement);
     })
     .finally(() => {
       setButtonState(evt.submitter, false);
-      closePopup(popupEditElement);
     });
 }
 
@@ -126,14 +124,13 @@ export function handlerUpdatePhotoFormSubmit(evt) {
   updatePhotoProfile(linkNewPhotoProfile.value)
     .then((infoProfile) => {
       profilePhoto.src = infoProfile.avatar;
+      closePopup(popupUpdatePhotoElement);
     })
     .catch((error) => {
       console.log(error);
-      closePopup(popupUpdatePhotoElement);
     })
     .finally(() => {
       setButtonState(evt.submitter, false);
-      closePopup(popupUpdatePhotoElement);
     });
 }
 
@@ -144,18 +141,14 @@ export function handlerAddFormSubmit(evt) {
       renderCard(card._id, card.name, card.link, card.likes.length, card.owner._id, false);
       nameCardInput.value = "";
       linkInput.value = "";
-      const buttonElement = evt.target.querySelector(
-        optionsForm.submitButtonSelector
-      );
-      buttonElement.classList.add(optionsForm.inactiveButtonClass);
-      buttonElement.setAttribute("disabled", true);
+      evt.submitter.classList.add(optionsForm.inactiveButtonClass);
+      evt.submitter.setAttribute("disabled", true);
+      closePopup(popupAddElement);
     })
     .catch((error) => {
       console.log(error);
-      closePopup(popupAddElement);
     })
     .finally(() => {
       evt.submitter.textContent = "Создать"
-      closePopup(popupAddElement);
     });
 }

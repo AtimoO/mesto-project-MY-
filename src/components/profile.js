@@ -20,16 +20,12 @@ export const profileSubtitle =
 export const profileBtnEdit = profileElement.querySelector(".profile__edit");
 export const profileBtnAdd = profileElement.querySelector(".profile__add");
 
-export function loaderProfileInfo() {
-  getInfoUserServer()
-    .then((user) => {
-      currentUserId = user._id;
-      linkNewPhotoProfile.value = user.avatar;
-      profilePhoto.src = user.avatar;
-      profileTitle.textContent = user.name;
-      profileSubtitle.textContent = user.about;
-      nameInput.value = user.name;
-      jobInput.value = user.about;
-    })
-    .catch((error) => console.log(error));
+export function loaderProfileInfo(user) {
+    currentUserId = user._id;
+    linkNewPhotoProfile.value = user.avatar;
+    profilePhoto.src = user.avatar;
+    profileTitle.textContent = user.name;
+    profileSubtitle.textContent = user.about;
+    nameInput.value = user.name;
+    jobInput.value = user.about;
 }
