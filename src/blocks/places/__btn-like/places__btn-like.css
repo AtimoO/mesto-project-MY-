@@ -5,7 +5,7 @@
   background-image: url(../../../images/buttons/like.svg);
   background-color: white;
   background-repeat: no-repeat;
-  flex-basis: 22px;
+  width: 22px;
   height: 19px;
   transition: opacity .2s linear;
 }

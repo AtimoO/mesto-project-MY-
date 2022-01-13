@@ -63,7 +63,7 @@ const setEventListeners = (formElement, optionsForm) => {
   });
 };
 
-const enableValidation = (optionsForm) => {
+export const enableValidation = (optionsForm) => {
   const formList = Array.from(
     document.querySelectorAll(optionsForm.formSelector)
   );
@@ -79,5 +79,3 @@ const enableValidation = (optionsForm) => {
     });
   });
 };
-
-export { enableValidation };

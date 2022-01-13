@@ -17,10 +17,11 @@
           alt="Фото профиля"
           class="profile__image"
         >
+        <div class="profile__image-overlay"></div>
         <div class="profile__info">
           <div class="profile__text">
-            <h1 class="profile__title">Жак-Ив Кусто</h1>
-            <p class="profile__subtitle">Исследователь океана</p>
+            <h1 class="profile__title">Имя</h1>
+            <p class="profile__subtitle">О себе</p>
           </div>
           <button
             class="profile__edit"
@@ -38,6 +39,7 @@
     <footer class="footer">
       <p class="footer__project">&copy; 2021 Mesto Russia</p>
     </footer>
+
     <div class="popup popup_edit">
       <div class="popup__container">
         <form
@@ -48,7 +50,7 @@
           novalidate
         >
           <fieldset class="popup__form-set">
-            <h2 class="popup__title">Редактировать профиль</h2> <!-- tag: legend -->
+            <h2 class="popup__title">Редактировать профиль</h2>
             <div class="popup__container-input">
               <input
                 class="popup__input"
@@ -105,7 +107,7 @@
           novalidate
         >
           <fieldset class="popup__form-set">
-            <h2 class="popup__title">Новое место</h2> <!-- tag: legend -->
+            <h2 class="popup__title">Новое место</h2>
             <div class="popup__container-input">
               <input
                 class="popup__input"
@@ -160,6 +162,76 @@
         ></button>
       </figure>
     </div>
+    <div class="popup popup_update-avatar">
+      <div class="popup__container">
+        <form
+          class="popup__form"
+          action="#"
+          method="POST"
+          name="popup-form-update-avatar"
+          novalidate
+        >
+          <fieldset class="popup__form-set">
+            <h2 class="popup__title">Обновить аватар</h2>
+            <div class="popup__container-input">
+              <input
+                class="popup__input"
+                name="linkNewPhoto"
+                id="linkNewPhoto"
+                type="url"
+                value="https://pictures.s3.yandex.net/frontend-developer/ava.jpg"
+                placeholder="Ссылка на фото профиля"
+                required
+              >
+              <span class="popup__input-error linkNewPhoto-error"></span>
+            </div>
+            <button
+              class="popup__form-submit"
+              type="submit"
+              name="submitUpdateAvatar"
+              id="submitUpdateAvatar"
+            >
+              Сохранить
+            </button>
+          </fieldset>
+        </form>
+        <button
+          class="popup__btn-close"
+          type="button"
+          name="closeUpdateAvatar"
+          id="closeUpdateAvatar"
+        ></button>
+      </div>
+    </div>
+<!-- 14
+    <div class="popup popup_confirm">
+    <div class="popup__container">
+      <form
+        class="popup__form"
+        action="#"
+        method="GET"
+        name="popup-form-add"
+        novalidate
+      >
+        <h2 class="popup__title">Вы уверены?</h2>
+        <button
+          class="popup__form-submit popup__form-submit_indent"
+          type="submit"
+          name="confirm"
+          id="confirm"
+        >
+          Да
+        </button>
+      </form>
+      <button
+        class="popup__btn-close"
+        type="button"
+        name="closeConfirm"
+        id="closeConfirm"
+      ></button>
+    </div>
+  </div>
+-->
 
     <template id="places-template">
       <li class="places__item">
@@ -167,10 +239,12 @@
         <button class="places__btn-remove" type="button"></button>
         <div class="places__description">
           <h2 class="places__title"></h2>
-          <button class="places__btn-like" type="button"></button>
+          <div class="places__like-container">
+            <button class="places__btn-like" type="button"></button>
+            <span class="places__sum-like">0</span>
+          </div>
         </div>
       </li>
     </template>
-    <!-- <script type="module" src="components/index.js"></script> -->
   </body>
 </html>
