@@ -1,4 +1,4 @@
-const optionsForm = {
+export const optionsForm = {
   formSelector: ".popup__form",
   formFieldsetSelector: ".popup__form-set", // +
   inputSelector: ".popup__input",
@@ -8,66 +8,26 @@ const optionsForm = {
   errorClass: "popup__input-error_active",
 };
 
-const initialPlaces = [
-  {
-    name: "Архыз",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
+export const config = {
+  baseUrl: "https://mesto.nomoreparties.co/v1/plus-cohort-5",
+  headers: {
+    authorization: "20520870-6cab-4f4f-bbfa-ddd25c12eab2",
+    "Content-Type": "application/json",
   },
-  {
-    name: "Челябинская область",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
-  },
-  {
-    name: "Иваново",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
-  },
-  {
-    name: "Камчатка",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
-  },
-  {
-    name: "Холмогорский район",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
-  },
-  {
-    name: "Байкал",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
-  },
-];
-
-const popups = document.querySelectorAll('.popup')
-// popup Edit
-const popupEditElement = document.querySelector(".popup_edit");
-const formEditElement = popupEditElement.querySelector(".popup__form");
-const nameInput = formEditElement.querySelector("#name");
-const jobInput = formEditElement.querySelector("#job");
-// popup Add
-const popupAddElement = document.querySelector(".popup_add");
-const formAddElement = popupAddElement.querySelector(".popup__form");
-const nameCardInput = formAddElement.querySelector("#name-card");
-const linkInput = formAddElement.querySelector("#link");
-// profile
-const profileElement = document.querySelector(".profile");
-const profileTitle = profileElement.querySelector(".profile__title");
-const profileSubtitle = profileElement.querySelector(".profile__subtitle");
-
-const profileBtnEdit = profileElement.querySelector(".profile__edit");
-const profileBtnAdd = profileElement.querySelector(".profile__add");
-
-export {
-  optionsForm,
-  initialPlaces,
-  popups,
-  popupEditElement,
-  formEditElement,
-  nameInput,
-  jobInput,
-  popupAddElement,
-  formAddElement,
-  nameCardInput,
-  linkInput,
-  profileTitle,
-  profileSubtitle,
-  profileBtnEdit,
-  profileBtnAdd,
 };
+
+export const popups = document.querySelectorAll(".popup");
+// popup Edit
+export const popupEditElement = document.querySelector(".popup_edit");
+export const formEditElement = popupEditElement.querySelector(".popup__form");
+export const nameInput = formEditElement.querySelector("#name");
+export const jobInput = formEditElement.querySelector("#job");
+// popup Add
+export const popupAddElement = document.querySelector(".popup_add");
+export const formAddElement = popupAddElement.querySelector(".popup__form");
+export const nameCardInput = formAddElement.querySelector("#name-card");
+export const linkInput = formAddElement.querySelector("#link");
+// popup update Photo
+export const popupUpdatePhotoElement = document.querySelector('.popup_update-avatar');
+export const formUpdatePhotoElement = popupUpdatePhotoElement.querySelector(".popup__form");
+export const linkNewPhotoProfile = formUpdatePhotoElement.querySelector('#linkNewPhoto');
