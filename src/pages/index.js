@@ -24,12 +24,11 @@ import {
   handlerUpdatePhotoFormSubmit,
   handlerAddFormSubmit,
 } from "../components/card.js";
-import { getCardsServer } from "../components/api.js";
+import { getCardsServer, getInfoUserServer } from "../components/api.js";
 
-loaderProfileInfo();
-
-getCardsServer()
-  .then((cards) => {
+Promise.all([getInfoUserServer(), getCardsServer()])
+  .then(([userData, cards]) => {
+    loaderProfileInfo(userData);
     cards.forEach((place) => {
       const liked = Boolean(
         place.likes.find((item) => item._id === currentUserId)
@@ -45,7 +44,6 @@ getCardsServer()
     });
   })
   .catch((error) => console.log(error));
-  console.log(currentUserId)
 
 profileBtnEdit.addEventListener("click", () => {
   openPopup(popupEditElement);
